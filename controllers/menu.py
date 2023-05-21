@@ -1,5 +1,6 @@
 from views.menu import MenuView
 from controllers.joueur import Display
+from modele.joueur import Joueur
 
 
 class Menu : 
@@ -10,7 +11,16 @@ class Menu :
         MenuView.afficher_titre_principal()
         MenuView.afficher_menu()
         choix = input("Saisissez votre choix : ")
-        if choix == "4" : 
+        if choix == "1" :
+            
+            nom= input("Saisissez le nom du joueur : ")
+            prenom = input("Saisissez le prénom du joueur : ")
+            date_de_naissance = input("Saisissez la date de naissance du joueur : ")
+            id_national = input("Saisissez l'ID national du joueur : ")
+            Joueur.ajouter_joueur(nom, prenom, date_de_naissance, id_national)
+            self.menu_principal()
+            
+        elif choix == "4" : 
             self.menu_rapports()
         else : 
             print("Option non disponible")
