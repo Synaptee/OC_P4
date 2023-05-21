@@ -17,6 +17,7 @@ class Joueur:
         db = TinyDB(db_path)
         table = db.table('_default')
         table.insert({'Nom': nom, 'Prénom': prenom, 'Date de naissance': date_de_naissance, 'ID': id_national})
+        print("Joueur ajouté à la base de données")
 
 
 

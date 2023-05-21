@@ -24,8 +24,6 @@ def main():
 
 
 
-
-
 if __name__ == "__main__":
     main()
     print("Fin d'exécution du programme \n")
