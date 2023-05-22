@@ -1,6 +1,6 @@
 from views.menu import MenuView
-from controllers.joueur import Display
-from controllers.tournois import DisplayTournois
+from controllers.joueur import ControllerJoueur
+from controllers.tournois import ControllerTournoi
 from modele.joueur import Joueur
 from modele.tournois import Tournoi
 
@@ -29,9 +29,9 @@ class Menu:
             nombre_de_tours = input("Saisissez le nombre de tours du tournoi (4 par défaut) : ")
             joueurs = []
             description = input("Saisissez une description du tournoi : ")
-
             tournoi = Tournoi(nom, lieu, date, date_fin, nombre_de_tours, 0, [], joueurs, description)
             tournoi.ajouter_tournoi()
+            self.menu_tournoi()
         elif choix == "4":
             self.menu_rapports()
         else:
@@ -41,12 +41,12 @@ class Menu:
         MenuView.afficher_menu_rapports()
         choix = input("Saisissez votre choix : ")
         if choix == "1":
-            display = Display()
+            display = ControllerJoueur()
             display.charger_joueurs()
             display.afficher_liste_joueurs()
             self.menu_rapports()
         elif choix == "2":
-            display = DisplayTournois()
+            display = ControllerTournoi()
             display.charger_tournois()
             display.afficher_liste_tournois()
             self.menu_rapports()
@@ -56,6 +56,27 @@ class Menu:
             print("Liste des joueurs d'un tournoi donné par ordre alphabétique")
         elif choix == "5":
             print("Liste de tous les tours du tournoi et de tous les matchs du tour")
+        elif choix == "6":
+            self.menu_principal()
+        elif choix == "7":
+            print("Fin du programme")
+
+        else:
+            print("Option non disponible")
+
+    def menu_tournoi(self):
+        MenuView.afficher_menu_tournoi()
+        choix = input("Saisissez votre choix : ")
+        if choix == "1":
+            print("Ajouter un joueur")
+        elif choix == "2":
+            print("Sélectionner des joueurs dans la liste")
+        elif choix == "3":
+            print("Reprendre le tournoi")
+        elif choix == "4":
+            print("Saisir les résultats du round")
+        elif choix == "5":
+            print("Afficher le classement")
         elif choix == "6":
             self.menu_principal()
         elif choix == "7":

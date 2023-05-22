@@ -4,8 +4,6 @@ from controllers.menu import Menu
 from pathlib2 import Path
 
 
-
-
 def check_bdd_exists():
     """Function that check if database already exists, and if not, creates the database"""
     base_dir = Path(__file__).resolve().parent
@@ -20,7 +18,6 @@ def check_bdd_exists():
 
 
 def main():
-    print("Début d'exécution du programme")
     check_bdd_exists()
     menu = Menu()
     menu.menu_principal()

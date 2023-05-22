@@ -15,7 +15,7 @@ class MenuView:
         print("[2] Créer un tournoi")
         print("[3] Reprendre un tournoi")
         print("[4] Voir la liste des rapports")
-        print("[5] Quitter l'application \n" )
+        print("[5] Quitter l'application \n")
 
     @staticmethod
     def afficher_menu_rapports():
@@ -25,5 +25,16 @@ class MenuView:
         print("[3] Nom et date d'un tournoi donné")
         print("[4] Liste des joueurs d'un tournoi donné par ordre alphabétique")
         print("[5] Liste de tous les tours du tournoi et de tous les matchs du tour")
+        print("[6] Revenir au menu principal")
+        print("[7] Quitter l'application \n")
+
+    @staticmethod
+    def afficher_menu_tournoi():
+        print("\n * Tournoi * \n")
+        print("[1] Ajouter un joueur")
+        print("[2] Sélectionner des joueurs dans la liste")
+        print("[3] Reprendre le tournoi")
+        print("[4] Saisir les résultats du round")
+        print("[5] Afficher le classement")
         print("[6] Revenir au menu principal")
         print("[7] Quitter l'application \n")

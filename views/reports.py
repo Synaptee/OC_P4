@@ -8,9 +8,8 @@ class Affichage:
         donnees_joueurs = []
 
         for joueur in liste_joueurs:
-            donnees_joueurs.append([joueur.nom, joueur.prenom])
-        #     print(f'- {joueur.nom} {joueur.prenom}')
-        tableau = tabulate(donnees_joueurs, headers=["Nom", "Prénom"], tablefmt="fancy_grid")
+            donnees_joueurs.append([joueur.nom, joueur.prenom, joueur.date_de_naissance, joueur.id_national])
+        tableau = tabulate(donnees_joueurs, headers=["Nom", "Prénom", "Date de naissance", "ID"], tablefmt="fancy_grid")
         print(tableau)
 
     @staticmethod
