@@ -1,6 +1,4 @@
 
-
-
 class MenuView:
     def __init__(self):
         pass
@@ -18,7 +16,6 @@ class MenuView:
         print("[3] Reprendre un tournoi")
         print("[4] Voir la liste des rapports")
         print("[5] Quitter l'application \n" )
-        
 
     @staticmethod
     def afficher_menu_rapports():
