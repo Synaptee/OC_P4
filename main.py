@@ -1,7 +1,6 @@
-from tinydb import TinyDB, Query
+from tinydb import TinyDB
 import os
 from controllers.menu import Menu
-
 from pathlib2 import Path
 
 
