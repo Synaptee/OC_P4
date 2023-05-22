@@ -17,6 +17,6 @@ class Affichage:
         print("\n Liste des tournois : ")
         donnees_tournois = []
         for tournoi in liste_tournois:
-            donnees_tournois.append([tournoi.nom, tournoi.lieu, tournoi.date_debut, tournoi.date_fin, tournoi.nombre_de_tours, tournoi.tour_actuel, tournoi.description])
-        tableau = tabulate(donnees_tournois, headers=["Nom", "Lieu", "Date de début", "Date de fin", "Nb tours", "Tours actuel", "Description"], tablefmt="fancy_grid")
+            donnees_tournois.append([tournoi.ID, tournoi.nom, tournoi.lieu, tournoi.date_debut, tournoi.date_fin, tournoi.nombre_de_tours, tournoi.tour_actuel, tournoi.description])
+        tableau = tabulate(donnees_tournois, headers=["ID", "Nom", "Lieu", "Date de début", "Date de fin", "Nb tours", "Tours actuel", "Description"], tablefmt="fancy_grid")
         print(tableau)

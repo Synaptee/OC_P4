@@ -17,13 +17,14 @@ class Tournoi:
         self.tours = tours
         self.joueurs = joueurs
         self.description = description
+        self.ID = (nom[0:2] + lieu[0] + date_debut[0:2] +date_debut[-2:]).upper()
 
     def ajouter_tournoi(self):
         db = TinyDB(db_path)
         table = db.table('_default')
         table.insert({'Nom': self.nom, 'Lieu': self.lieu, 'Date de début': self.date_debut, 'Date de fin': self.date_fin,
                       'Nombre de tours': self.nombre_de_tours, 'Tour actuel': self.tour_actuel, 'Tours': self.tours,
-                      'Joueurs': self.joueurs, 'Description': self.description})
+                      'Joueurs': self.joueurs, 'Description': self.description, 'ID': self.ID})
         print("Tournoi ajouté à la base de données")
 
 

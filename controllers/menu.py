@@ -32,6 +32,9 @@ class Menu:
             tournoi = Tournoi(nom, lieu, date, date_fin, nombre_de_tours, 0, [], joueurs, description)
             tournoi.ajouter_tournoi()
             self.menu_tournoi()
+        elif choix == "3":
+            self.display_tournois()
+            tournoi = input("\n Saisissez l'ID du tournoi sélectionné' : ")
         elif choix == "4":
             self.menu_rapports()
         else:
@@ -46,9 +49,7 @@ class Menu:
             display.afficher_liste_joueurs()
             self.menu_rapports()
         elif choix == "2":
-            display = ControllerTournoi()
-            display.charger_tournois()
-            display.afficher_liste_tournois()
+            self.display_tournois()
             self.menu_rapports()
         elif choix == "3":
             print("Nom et date d'un tournoi donné")
@@ -72,7 +73,8 @@ class Menu:
         elif choix == "2":
             print("Sélectionner des joueurs dans la liste")
         elif choix == "3":
-            print("Reprendre le tournoi")
+            self.display_tournois()
+            tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
         elif choix == "4":
             print("Saisir les résultats du round")
         elif choix == "5":
@@ -84,3 +86,9 @@ class Menu:
 
         else:
             print("Option non disponible")
+
+
+    def display_tournois(self):
+        display = ControllerTournoi()
+        display.charger_tournois()
+        display.afficher_liste_tournois()
