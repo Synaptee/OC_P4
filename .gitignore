@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # Exclusion JB
-.test.py
+test.py
