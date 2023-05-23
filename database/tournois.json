@@ -5,7 +5,7 @@
             "Lieu": "Paris",
             "Date de d\u00e9but": "22/05/2023",
             "Date de fin": "25/05/2023",
-            "Nombre de tours": "3",
+            "Nombre de tours": 3,
             "Tour actuel": 0,
             "Tours": [],
             "Joueurs": [],
@@ -17,12 +17,24 @@
             "Lieu": "Londres",
             "Date de d\u00e9but": "22/06/2023",
             "Date de fin": "25/06/2023",
-            "Nombre de tours": "4",
+            "Nombre de tours": 4,
             "Tour actuel": 0,
             "Tours": [],
             "Joueurs": [],
             "Description": "Hurry my Lord !",
             "ID": "THL2223"
+        },
+        "3": {
+            "Nom": "Mettalica Dream Tournament",
+            "Lieu": "Houston",
+            "Date de d\u00e9but": "12/09/2023",
+            "Date de fin": "15/09/2023",
+            "Nombre de tours": 5,
+            "Tour actuel": 0,
+            "Tours": [],
+            "Joueurs": [],
+            "Description": "Hell yeah ",
+            "ID": "MEH1223"
         }
     }
 }

@@ -52,7 +52,9 @@ class Menu:
             self.display_tournois()
             self.menu_rapports()
         elif choix == "3":
-            print("Nom et date d'un tournoi donné")
+            id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
+            ControllerTournoi.get_tournoi(id_tournoi)
+            self.menu_rapports()
         elif choix == "4":
             print("Liste des joueurs d'un tournoi donné par ordre alphabétique")
         elif choix == "5":

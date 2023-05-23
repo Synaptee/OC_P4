@@ -20,3 +20,13 @@ class Affichage:
             donnees_tournois.append([tournoi.ID, tournoi.nom, tournoi.lieu, tournoi.date_debut, tournoi.date_fin, tournoi.nombre_de_tours, tournoi.tour_actuel, tournoi.description])
         tableau = tabulate(donnees_tournois, headers=["ID", "Nom", "Lieu", "Date de début", "Date de fin", "Nb tours", "Tours actuel", "Description"], tablefmt="fancy_grid")
         print(tableau)
+
+
+    @staticmethod
+    def afficher_infos_tournois(infos_tournois):
+        print("\n Nom et date du tournoi demandé : ")
+        tournoi = []
+        infos = [infos_tournois[0]["Nom"], infos_tournois[0]["Date de début"]]
+        tournoi.append(infos)
+        tableau = tabulate(tournoi, headers=["Nom", "Date de début"], tablefmt="fancy_grid")
+        print(tableau)
