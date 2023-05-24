@@ -32,3 +32,5 @@ class Joueur:
         else:
             print("Le joueur n'existe pas dans la base de données")
             return False
+        
+    

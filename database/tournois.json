@@ -8,7 +8,12 @@
             "Nombre de tours": 3,
             "Tour actuel": 0,
             "Tours": [],
-            "Joueurs": [],
+            "Joueurs": [
+                "Boursier K\u00e9vin",
+                "Vachier-Lagrave Maxime",
+                "Carlsen Magnus",
+                "Lupin Ars\u00e8ne"
+            ],
             "Description": "Hold up",
             "ID": "BLP2223"
         },

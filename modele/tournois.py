@@ -15,9 +15,9 @@ class Tournoi:
         self.lieu = lieu
         self.date_debut = date_debut
         self.date_fin = date_fin
-        self.nombre_de_tours = nombre_de_tours
+        self.nombre_de_tours = int(nombre_de_tours)
         self.tour_actuel = tour_actuel
-        self.tours = int(tours)
+        self.tours = tours
         self.joueurs = joueurs
         self.description = description
         self.ID = (nom[0:2] + lieu[0] + date_debut[0:2] +date_debut[-2:]).upper()
@@ -27,6 +27,10 @@ class Tournoi:
                       'Nombre de tours': self.nombre_de_tours, 'Tour actuel': self.tour_actuel, 'Tours': self.tours,
                       'Joueurs': self.joueurs, 'Description': self.description, 'ID': self.ID})
         print("Tournoi ajouté à la base de données")
+
+    @staticmethod
+    def ajouter_liste_joueurs_au_tournoi(liste_joueurs,id_tournoi):
+        Tournoi.table.update({'Joueurs': liste_joueurs}, Query().ID == id_tournoi)
 
     
 
