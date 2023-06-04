@@ -10,6 +10,7 @@ class Menu:
         pass
 
     def menu_principal(self):
+        """Affiche le menu principal et les options disponibles"""
         MenuView.afficher_titre_principal()
         MenuView.afficher_menu()
         choix = input("Saisissez votre choix : ")
@@ -18,7 +19,7 @@ class Menu:
             prenom = input("Saisissez le prénom du joueur : ")
             date_de_naissance = input("Saisissez la date de naissance du joueur : ")
             id_national = input("Saisissez l'ID national du joueur : ")
-            #Joueur.ajouter_joueur(nom, prenom, date_de_naissance, id_national)
+            # Joueur.ajouter_joueur(nom, prenom, date_de_naissance, id_national)
             joueur = Joueur(nom, prenom, date_de_naissance, id_national)
             joueur.ajouter_joueur()
             self.menu_principal()
@@ -46,6 +47,7 @@ class Menu:
             print("Option non disponible")
 
     def menu_rapports(self):
+        """Affiche le menu des rapports et les options disponibles"""
         MenuView.afficher_menu_rapports()
         choix = input("Saisissez votre choix : ")
         if choix == "1":
@@ -61,7 +63,10 @@ class Menu:
             ControllerTournoi.get_tournoi(id_tournoi)
             self.menu_rapports()
         elif choix == "4":
-            print("Liste des joueurs d'un tournoi donné par ordre alphabétique")
+            id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
+            ControllerTournoi.get_joueurs_tournoi(id_tournoi)
+            self.menu_rapports()
+            # print("Liste des joueurs d'un tournoi donné par ordre alphabétique")
         elif choix == "5":
             print("Liste de tous les tours du tournoi et de tous les matchs du tour")
         elif choix == "6":
@@ -73,6 +78,7 @@ class Menu:
             print("Option non disponible")
 
     def menu_tournoi(self):
+        """Affiche le menu des tournois et les options disponibles"""
         MenuView.afficher_menu_tournoi()
         choix = input("Saisissez votre choix : ")
         if choix == "1":

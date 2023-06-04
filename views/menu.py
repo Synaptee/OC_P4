@@ -22,8 +22,8 @@ class MenuView:
         print("[1] Liste des joueurs par ordre aplhabétique")
         print("[2] Liste de tous les tournois")
         print("[3] Nom et date d'un tournoi donné")
-        # print("[4] Liste des joueurs d'un tournoi donné par ordre alphabétique")
-        # print("[5] Liste de tous les tours du tournoi et de tous les matchs du tour")
+        print("[4] Liste des joueurs d'un tournoi donné par ordre alphabétique")
+        print("[5] Liste de tous les tours du tournoi et de tous les matchs du tour")
         print("[6] Revenir au menu principal")
         print("[7] Quitter l'application \n")
 
@@ -31,8 +31,8 @@ class MenuView:
     def afficher_menu_tournoi():
         print("\n * Tournoi * \n")
         print("[1] Sélectionner des joueurs dans la liste")
-        # print("[2] Reprendre le tournoi")
-        # print("[3] Saisir les résultats du round")
-        # print("[4] Afficher le classement")
+        print("[2] Reprendre le tournoi")
+        print("[3] Saisir les résultats du round")
+        print("[4] Afficher le classement")
         print("[5] Revenir au menu principal")
         print("[6] Quitter l'application \n")

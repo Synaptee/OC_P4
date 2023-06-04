@@ -66,3 +66,16 @@ class Affichage:
             tournoi, headers=["Nom", "Date de début"], tablefmt="fancy_grid"
         )
         print(tableau)
+
+    @staticmethod
+    def afficher_liste_joueurs_tournoi(infos_tournois: list):
+        print("\n Liste des joueurs du tournoi : ")
+
+        infos = sorted([infos_tournois[0]["Joueurs"]][0])
+        print(infos)
+        liste_joueurs = []
+        for joueur in infos:
+            liste_joueurs.append([joueur])
+
+        tableau = tabulate(liste_joueurs, headers=["Joueurs"], tablefmt="fancy_grid")
+        print(tableau)
