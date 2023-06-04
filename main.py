@@ -7,8 +7,8 @@ from pathlib2 import Path
 def check_bdd_exists():
     """Function that check if database already exists, and if not, creates the database"""
     base_dir = Path(__file__).resolve().parent
-    joueurs_path = base_dir / 'database' / 'joueurs.json'
-    tournois_path = base_dir / 'database' / 'tournois.json'
+    joueurs_path = base_dir / "database" / "joueurs.json"
+    tournois_path = base_dir / "database" / "tournois.json"
     if not os.path.exists(joueurs_path):
         db = TinyDB(joueurs_path)
         db.close()
@@ -26,5 +26,3 @@ def main():
 if __name__ == "__main__":
     main()
     print("Fin d'exécution du programme \n")
-
-   

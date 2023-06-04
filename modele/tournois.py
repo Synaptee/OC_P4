@@ -10,7 +10,7 @@ class Tournoi:
     db = TinyDB(db_path)
     table = db.table('_default')
 
-    def __init__(self, nom, lieu, date_debut, date_fin, nombre_de_tours:4, tour_actuel:0, tours:list, joueurs, description):
+    def __init__(self, nom:str="", lieu:str="", date_debut:str="", date_fin:str="", nombre_de_tours:int=4, tour_actuel : int=0 , tours:list=[] , joueurs:list=[], description:str=""):
         self.nom = nom
         self.lieu = lieu
         self.date_debut = date_debut
