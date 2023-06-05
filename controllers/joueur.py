@@ -46,26 +46,4 @@ class ControllerJoueur:
             nom_prenom = f"{player['Nom']} {player['Prénom']}"
             liste_joueurs_selectionnes.append(nom_prenom)
 
-        print(liste_joueurs_selectionnes)
         return liste_joueurs_selectionnes
-
-    def generate_random_players_list(self, nb_joueurs):
-        player_data = self.db.table("_default").all()
-
-        # Vérification si le nombre demandé est supérieur au nombre total de joueurs disponibles
-        if nb_joueurs > len(player_data):
-            raise ValueError(
-                "Le nombre de joueurs demandé dépasse le nombre total de joueurs disponibles."
-            )
-
-        # Sélection aléatoire des joueurs
-        selected_players = random.sample(player_data, nb_joueurs)
-
-        # Création de la liste de noms et prénoms des joueurs sélectionnés
-        player_list = []
-        for player in selected_players:
-            nom_prenom = f"{player['Nom']} {player['Prénom']}"
-            player_list.append(nom_prenom)
-
-        # return player_list
-        print(player_list)
