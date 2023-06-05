@@ -37,4 +37,3 @@ class MenuView:
         print("[5] Afficher le classement")
         print("[6] Revenir au menu principal")
         print("[7] Quitter l'application \n")
-        print("[8] Admins : générer une liste de joueurs aléatoire")

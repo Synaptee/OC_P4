@@ -44,7 +44,16 @@
             "Nombre de tours": 5,
             "Tour actuel": 0,
             "Tours": [],
-            "Joueurs": [],
+            "Joueurs": [
+                "Hamilton Lewis",
+                "Bern St\u00e9phane",
+                "Ftn Tut",
+                "Kasparov Garry",
+                "Lupin Ars\u00e8ne",
+                "Larchevque Eric",
+                "Verstappen Max",
+                "Vachier-Lagrave Maxime"
+            ],
             "Description": "Hell yeah ",
             "ID": "MEH1223"
         }

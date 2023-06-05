@@ -4,6 +4,7 @@ from tabulate import tabulate
 class Affichage:
     @staticmethod
     def afficher_liste_joueurs(liste_joueurs: list):
+        """Fonction qui affiche la liste des joueurs, par ordre alphabétique"""
         print("\n Liste des joueurs : ")
         donnees_joueurs = []
 
@@ -25,6 +26,7 @@ class Affichage:
 
     @staticmethod
     def afficher_liste_tournois(liste_tournois: list):
+        """Fonction qui affiche la liste des tournois"""
         print("\n Liste des tournois : ")
         donnees_tournois = []
         for tournoi in liste_tournois:
@@ -58,6 +60,7 @@ class Affichage:
 
     @staticmethod
     def afficher_infos_tournois(infos_tournois: list):
+        """Fonction qui affiche les informations d'un tournoi : Nom et date de début"""
         print("\n Nom et date du tournoi demandé : ")
         tournoi = []
         infos = [infos_tournois[0]["Nom"], infos_tournois[0]["Date de début"]]
@@ -69,6 +72,7 @@ class Affichage:
 
     @staticmethod
     def afficher_liste_joueurs_tournoi(infos_tournois: list):
+        """Fonction qui affiche la liste des joueurs d'un tournoi donné"""
         print("\n Liste des joueurs du tournoi : ")
 
         infos = sorted([infos_tournois[0]["Joueurs"]][0])

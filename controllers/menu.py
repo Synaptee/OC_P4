@@ -91,9 +91,14 @@ class Menu:
             print(
                 f"Les joueurs {liste_joueurs_selectionnes} ont été ajoutés au tournoi"
             )
-            MenuView.afficher_menu_tournoi()
+            self.menu_tournoi()
+
         elif choix == "2":
+            id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
+            ControllerTournoi.generate_random_matches(id_tournoi)
             print("Lancer le tournoi et générer le round 1")
+            self.menu_tournoi()
+
         elif choix == "3":
             self.display_tournois()
             tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")

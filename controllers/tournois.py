@@ -2,6 +2,7 @@ from modele.tournois import Tournoi
 from views.reports import Affichage
 from tinydb import TinyDB, Query
 from pathlib2 import Path
+import random
 
 base_dir = Path(__file__).resolve().parent.parent
 db_path = base_dir / "database" / "tournois.json"
@@ -36,13 +37,43 @@ class ControllerTournoi:
         affichage.afficher_liste_tournois(self.liste_tournois)
 
     @staticmethod
-    def get_tournoi(id_tournoi):
+    def search_tournoi(id_tournoi):
         tournoi_en_cours = ControllerTournoi.table.search((Query().ID == id_tournoi))
+        return tournoi_en_cours
+
+    @staticmethod
+    def get_tournoi(id_tournoi):
+        tournoi_en_cours = ControllerTournoi.search_tournoi(id_tournoi)
         affichage = Affichage()
         affichage.afficher_infos_tournois(tournoi_en_cours)
 
     @staticmethod
     def get_joueurs_tournoi(id_tournoi):
-        tournoi_en_cours = ControllerTournoi.table.search((Query().ID == id_tournoi))
+        tournoi_en_cours = ControllerTournoi.search_tournoi(id_tournoi)
         affichage = Affichage()
         affichage.afficher_liste_joueurs_tournoi(tournoi_en_cours)
+
+    @staticmethod
+    def generate_random_matches(id_tournoi: str):
+        tournoi_en_cours = ControllerTournoi.search_tournoi(id_tournoi)
+        player_list = tournoi_en_cours[0]["Joueurs"]
+        num_players = len(player_list)
+
+        # Vérification si le nombre de joueurs est impair
+        if num_players % 2 != 0:
+            raise ValueError(
+                "Le nombre de joueurs doit être pair pour générer des matchs."
+            )
+
+        random.shuffle(player_list)  # Mélange aléatoire des joueurs
+
+        matches = {}
+        round_name = "Round 1"
+        matches[round_name] = []
+
+        # Création des paires de joueurs
+        for i in range(0, num_players, 2):
+            match = ([player_list[i], 0], [player_list[i + 1], 0])
+            matches[round_name].append(match)
+        print(matches)
+        # return matches
