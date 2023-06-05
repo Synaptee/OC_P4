@@ -6,13 +6,36 @@
             "Date de d\u00e9but": "22/05/2023",
             "Date de fin": "25/05/2023",
             "Nombre de tours": 3,
-            "Tour actuel": 0,
-            "Tours": [],
+            "Tour actuel": 1,
+            "Tours": {
+                "Round 1": [
+                    [
+                        [
+                            "Watson Emma",
+                            0
+                        ],
+                        [
+                            "Vachier-Lagrave Maxime",
+                            0
+                        ]
+                    ],
+                    [
+                        [
+                            "Bern St\u00e9phane",
+                            0
+                        ],
+                        [
+                            "Lamas Lorenzo",
+                            0
+                        ]
+                    ]
+                ]
+            },
             "Joueurs": [
-                "Lamas Lorenzo",
-                "Bern St\u00e9phane",
                 "Watson Emma",
-                "Vachier-Lagrave Maxime"
+                "Vachier-Lagrave Maxime",
+                "Bern St\u00e9phane",
+                "Lamas Lorenzo"
             ],
             "Description": "Hold up",
             "ID": "BLP2223"
@@ -42,8 +65,41 @@
             "Date de d\u00e9but": "12/09/2023",
             "Date de fin": "15/09/2023",
             "Nombre de tours": 5,
-            "Tour actuel": 0,
-            "Tours": [],
+            "Tour actuel": 1,
+            "Tours": {
+                "Round 1": [
+                    [
+                        [
+                            "Boursier K\u00e9vin",
+                            0
+                        ],
+                        [
+                            "Ocean Daniel",
+                            0
+                        ]
+                    ],
+                    [
+                        [
+                            "Kasparov Garry",
+                            0
+                        ],
+                        [
+                            "Carlsen Magnus",
+                            0
+                        ]
+                    ],
+                    [
+                        [
+                            "Hamilton Lewis",
+                            0
+                        ],
+                        [
+                            "Larchevque Eric",
+                            0
+                        ]
+                    ]
+                ]
+            },
             "Joueurs": [
                 "Hamilton Lewis",
                 "Bern St\u00e9phane",

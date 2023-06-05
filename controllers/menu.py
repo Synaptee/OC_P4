@@ -95,8 +95,9 @@ class Menu:
 
         elif choix == "2":
             id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
-            ControllerTournoi.generate_random_matches(id_tournoi)
-            print("Lancer le tournoi et générer le round 1")
+            controller = ControllerTournoi()
+            controller.generate_random_matches(id_tournoi)
+            print("Round 1 généré et tournoi lancé")
             self.menu_tournoi()
 
         elif choix == "3":

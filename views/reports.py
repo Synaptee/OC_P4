@@ -38,6 +38,7 @@ class Affichage:
                     tournoi.date_debut,
                     tournoi.date_fin,
                     tournoi.nombre_de_tours,
+                    len(tournoi.joueurs),
                     tournoi.tour_actuel,
                     tournoi.description,
                 ]
@@ -51,6 +52,7 @@ class Affichage:
                 "Date de début",
                 "Date de fin",
                 "Nb tours",
+                "Nb joueurs inscrits",
                 "Tours actuel",
                 "Description",
             ],

@@ -53,8 +53,7 @@ class ControllerTournoi:
         affichage = Affichage()
         affichage.afficher_liste_joueurs_tournoi(tournoi_en_cours)
 
-    @staticmethod
-    def generate_random_matches(id_tournoi: str):
+    def generate_random_matches(self, id_tournoi: str):
         tournoi_en_cours = ControllerTournoi.search_tournoi(id_tournoi)
         player_list = tournoi_en_cours[0]["Joueurs"]
         num_players = len(player_list)
@@ -75,5 +74,12 @@ class ControllerTournoi:
         for i in range(0, num_players, 2):
             match = ([player_list[i], 0], [player_list[i + 1], 0])
             matches[round_name].append(match)
-        print(matches)
+        # print(matches)
+        updated_tournoi = tournoi_en_cours[0]
+        updated_tournoi["Tour actuel"] = 1
+        updated_tournoi["Tours"] = matches
+        print(updated_tournoi)
+        Entry = Query()
+        self.table.update(updated_tournoi, Entry.ID == id_tournoi)
+
         # return matches
