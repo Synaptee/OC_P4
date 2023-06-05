@@ -66,7 +66,6 @@ class Menu:
             id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
             ControllerTournoi.get_joueurs_tournoi(id_tournoi)
             self.menu_rapports()
-            # print("Liste des joueurs d'un tournoi donné par ordre alphabétique")
         elif choix == "5":
             print("Liste de tous les tours du tournoi et de tous les matchs du tour")
         elif choix == "6":
@@ -82,9 +81,6 @@ class Menu:
         MenuView.afficher_menu_tournoi()
         choix = input("Saisissez votre choix : ")
         if choix == "1":
-            print("Ajouter un joueur")
-        elif choix == "2":
-            # print("Sélectionner des joueurs dans la liste")
             id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
             nb_joueurs = int(input("Saisissez le nombre de joueurs à sélectionner : "))
             display = ControllerJoueur()
@@ -95,6 +91,9 @@ class Menu:
             print(
                 f"Les joueurs {liste_joueurs_selectionnes} ont été ajoutés au tournoi"
             )
+            MenuView.afficher_menu_tournoi()
+        elif choix == "2":
+            print("Lancer le tournoi et générer le round 1")
         elif choix == "3":
             self.display_tournois()
             tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")

@@ -9,10 +9,10 @@
             "Tour actuel": 0,
             "Tours": [],
             "Joueurs": [
-                "Boursier K\u00e9vin",
-                "Vachier-Lagrave Maxime",
-                "Carlsen Magnus",
-                "Lupin Ars\u00e8ne"
+                "Lamas Lorenzo",
+                "Bern St\u00e9phane",
+                "Watson Emma",
+                "Vachier-Lagrave Maxime"
             ],
             "Description": "Hold up",
             "ID": "BLP2223"
@@ -25,7 +25,14 @@
             "Nombre de tours": 4,
             "Tour actuel": 0,
             "Tours": [],
-            "Joueurs": [],
+            "Joueurs": [
+                "Larchevque Eric",
+                "Hamilton Lewis",
+                "Kasparov Garry",
+                "Ocean Daniel",
+                "Boursier K\u00e9vin",
+                "Carlsen Magnus"
+            ],
             "Description": "Hurry my Lord !",
             "ID": "THL2223"
         },
