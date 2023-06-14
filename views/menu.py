@@ -34,6 +34,5 @@ class MenuView:
         print("[2] Lancer le tournoi et générer le round 1")
         print("[3] Reprendre le tournoi")
         print("[4] Saisir les résultats du round")
-        print("[5] Afficher le classement")
-        print("[6] Revenir au menu principal")
-        print("[7] Quitter l'application \n")
+        print("[5] Revenir au menu principal")
+        print("[6] Quitter l'application \n")

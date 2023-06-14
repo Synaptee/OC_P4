@@ -5,54 +5,147 @@ from pathlib2 import Path
 
 base_dir = Path(__file__).resolve().parent
 db_path = base_dir / "database" / "tournois.json"
+
+
 db = TinyDB(db_path)
 table = db.table("_default")
+tournois = table.all()
+# Récupérer la liste des rounds en cours
+id_tournoi = input("Saisissez l'ID du tournoi : ")
+
+tournoi_en_cours = table.search((Query().ID == id_tournoi))
+joueurs = tournoi_en_cours[0]["Joueurs"]
 
 
-def generate_random_matches(player_list):
-    Entry = Query()
-    result = table.search(Entry.ID == "MEH1223")
-    if result[0]["Tour actuel"] == 0:
-        num_players = len(player_list)
 
-        # Vérification si le nombre de joueurs est impair
-        if num_players % 2 != 0:
-            raise ValueError(
-                "Le nombre de joueurs doit être pair pour générer des matchs."
-            )
+def get_match_joues(id_tournoi):
+    tournoi_en_cours = table.search((Query().ID == id_tournoi))
+    matchs_deja_joues=[]
+    round_en_cours = int(tournoi_en_cours[0]["Tour actuel"])
 
-        random.shuffle(player_list)  # Mélange aléatoire des joueurs
+    for i in range(1,round_en_cours+1):
+        
+        matchs_deja_joues.append(tournoi_en_cours[0]["Tours"]["Round " + str(round_en_cours)][0])
 
-        matches = {}
-        round_name = "Round 1"
-        matches[round_name] = []
-
-        # Création des paires de joueurs
-        for i in range(0, num_players, 2):
-            match = ([player_list[i], 0], [player_list[i + 1], 0])
-            matches[round_name].append(match)
-
-        updated_result = result[0]
-        updated_result["Tour actuel"] = 1
-        updated_result["Tours"] = matches
-
-        table.update(updated_result, Entry.ID == "MEH1223")
-        print(result)
-
-        return matches
-    else:
-        print("Le tournoi a déjà commencé.")
+    return matchs_deja_joues
 
 
-# Exemple d'utilisation
-print("***")
-liste_joueurs = [
-    "Larchevque Eric",
-    "Hamilton Lewis",
-    "Kasparov Garry",
-    "Ocean Daniel",
-    "Boursier K\u00e9vin",
-    "Carlsen Magnus",
-]
-matchs = generate_random_matches(liste_joueurs)
-print(matchs)
+print(get_match_joues(id_tournoi))
+
+round_en_cours = tournoi_en_cours[0]["Tour actuel"]
+matchs_en_cours = get_match_joues(id_tournoi)
+
+# Ce script permet de saisir les résultats d'un round en cours
+# et de sauvegarder les résultats dans la base de données
+
+#matchs_en_cours = tournoi_en_cours[0]["Tours"]["Round " + str(round_en_cours)]
+# print(matchs_en_cours)
+# round_results = []
+# for match in matchs_en_cours:
+#     print("\n Indiquez le vainqueur du match : ")
+#     print(f"{match[0][0]} (1) ou {match[1][0]} (2)")
+#     print("Indiquer 0 pour match nul")
+#     result = input("Saisissez le résultat : ")
+
+#     if result == "1":
+#         match[0][1] += 1
+#     elif result == "2":
+#         match[1][1] += 1
+#     elif result == "0":
+#         match[0][1] += 0.5
+#         match[1][1] += 0.5
+#     else:
+#         print("Saisie invalide")
+
+#     round_results.append(match)
+# updated_round_results = tournoi_en_cours[0]
+# updated_round_results["Tours"]["Round " + str(round_en_cours)] = round_results
+# print(round_results)
+# print(updated_round_results)
+# table.update(updated_round_results, Query().ID == id_tournoi)
+# print("Résultats du round enregistrés")
+
+# Génération des matchs du round suivant
+# print(matchs_en_cours)
+
+
+
+
+
+def already_played(matchs_en_cours, joueur1, joueur2):
+    for match in matchs_en_cours:
+        # print(f"Le match est : {match}")
+        if (joueur1 in match[0] or joueur1 in match[1]) and (joueur2 in match[0] or joueur2 in match[1]):
+            print(f"{joueur1} et {joueur2} ont déjà joué ensemble")
+
+            return True
+    print(f"{joueur1} et {joueur2} n'ont pas encore joué ensemble")
+    return False
+
+
+def organiser_matchs(joueurs, matchs_joues):
+    matchs_futurs = []
+    joueurs_points = {}
+
+    # Calcul des points de chaque joueur
+    for joueur in joueurs:
+        points = 0
+        for match in matchs_joues:
+            # print("BANCO")
+            if match[0][0] == joueur:
+                points += match[0][1]
+            elif match[1][0] == joueur:
+                points += match[1][1]
+                # print(points)  # Récupération du score du joueur dans le match
+        joueurs_points[joueur] = points
+
+    #print(joueurs_points)
+
+    # Tri des joueurs par points (du plus élevé au plus bas)
+    joueurs_tries = sorted(joueurs, key=lambda x: joueurs_points[x], reverse=True)
+    print(joueurs_tries)
+    # return joueurs_tries
+
+    while len(joueurs_tries) != 0:
+        # for i in range(0, len(joueurs_tries)):
+        i = 0
+        joueur1 = joueurs_tries[i]
+        joueur2 = joueurs_tries[i + 1] if i + 1 < len(joueurs_tries) else None
+
+        while joueur2 and already_played(matchs_joues, joueur1, joueur2):
+            i += 1
+            joueur2 = joueurs_tries[i + 1] if i + 1 < len(joueurs_tries) else None
+
+        matchs_futurs.append([[joueur1, 0], [joueur2, 0]])
+        joueurs_tries.remove(joueur1)
+        joueurs_tries.remove(joueur2)
+        print(f"La liste des joueurs triés est : {joueurs_tries}")
+    return matchs_futurs
+
+
+datas = organiser_matchs(joueurs, matchs_en_cours)
+print(datas)
+
+
+# def ont_joue(joueur1, joueur2, liste_resultats):
+#     for match in liste_resultats:
+#         if (joueur1 in match[0] or joueur1 in match[1]) and (joueur2 in match[0] or joueur2 in match[1]):
+#             return True
+#     return False
+
+
+# # Liste des matchs
+# liste_resultats = [
+#     [["Watson Emma", 1], ["Vachier-Lagrave Maxime", 1]],
+#     [["Bern Stéphane", 0.5], ["Lamas Lorenzo", 0.5]],
+#     [["Vachier-Lagrave Maxime", 1], ["Lamas Lorenzo", 0]],
+#     [["Watson Emma", 0], ["Bern Stéphane", 1]],
+# ]
+
+# # Vérification
+# joueur1 = "Watson Emma"
+# joueur2 = "Lamas Lorenzo"
+# if ont_joue(joueur1, joueur2, liste_resultats):
+#     print(f"{joueur1} et {joueur2} se sont déjà affrontés.")
+# else:
+#     print(f"{joueur1} et {joueur2} ne se sont pas encore affrontés.")

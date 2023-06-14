@@ -106,10 +106,8 @@ class Menu:
         elif choix == "4":
             print("Saisir les résultats du round")
         elif choix == "5":
-            print("Afficher le classement")
-        elif choix == "6":
             self.menu_principal()
-        elif choix == "7":
+        elif choix == "6":
             print("Fin du programme")
 
         else:
