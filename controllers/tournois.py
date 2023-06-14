@@ -3,6 +3,7 @@ from views.reports import Affichage
 from tinydb import TinyDB, Query
 from pathlib2 import Path
 import random
+import datetime
 
 base_dir = Path(__file__).resolve().parent.parent
 db_path = base_dir / "database" / "tournois.json"
@@ -69,12 +70,17 @@ class ControllerTournoi:
 
         matches = {}
         round_name = "Round 1"
-        matches[round_name] = []
+        matches[round_name] = {}
+        matches[round_name]["Start"] = str(
+            datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
+        )
+        matches[round_name]["Matchs"] = []
+        matches[round_name]["End"] = ""
 
         # Création des paires de joueurs
         for i in range(0, num_players, 2):
             match = ([player_list[i], 0], [player_list[i + 1], 0])
-            matches[round_name].append(match)
+            matches[round_name]["Matchs"].append(match)
         # print(matches)
         updated_tournoi = tournoi_en_cours[0]
         updated_tournoi["Tour actuel"] = 1
