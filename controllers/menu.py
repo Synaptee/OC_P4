@@ -3,6 +3,7 @@ from controllers.joueur import ControllerJoueur
 from controllers.tournois import ControllerTournoi
 from modele.joueur import Joueur
 from modele.tournois import Tournoi
+from modele.rounds import Round
 
 
 class Menu:
@@ -104,7 +105,16 @@ class Menu:
             self.display_tournois()
             tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
         elif choix == "4":
-            print("Saisir les résultats du round")
+            tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
+            datas_round = ControllerTournoi.get_current_round(tournoi)
+            name_round = "Round " + str(datas_round[1])
+            print(f"Round en cours : {name_round}")
+            matchs_round = datas_round[0]["Matchs"]
+            print(f"Matchs du round : {matchs_round}")
+            round = Round(name=name_round, matchs=matchs_round)
+            round.enter_round_results()
+            round.save_round_results(tournoi)
+            self.menu_tournoi()
         elif choix == "5":
             self.menu_principal()
         elif choix == "6":

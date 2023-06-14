@@ -77,11 +77,22 @@ class Round:
             round_results.append(match)
         # updated_round_results = tournoi_en_cours[0]
         self.matchs = round_results
-        # print(self.matchs)
+        print(self.matchs)
+        self.end_date = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
         # print(round_results)
         # print(updated_round_results)
         # table.update(updated_round_results, Query().ID == id_tournoi)
         # print("Résultats du round enregistrés")
+
+    def save_round_results(self, id_tournoi: str = ""):
+        """Function that save round results in the database"""
+        tournoi_en_cours = table.search((Query().ID == id_tournoi))
+        updated_tournoi = tournoi_en_cours[0]
+        updated_tournoi["Tours"][self.name]["Matchs"] = self.matchs
+        updated_tournoi["Tours"][self.name]["End"] = self.end_date
+        updated_tournoi["Tour actuel"] += 1
+        table.update(updated_tournoi, Query().ID == id_tournoi)
+        print("Résultats du round enregistrés")
 
     def get_played_rounds(self) -> list:
         """Function that returns the list of played rounds"""
@@ -91,7 +102,9 @@ class Round:
 
         for i in range(1, round_en_cours + 1):
             played_rounds.append(
-                tournoi_en_cours[0]["Tours"]["Round " + str(round_en_cours)][0]
+                tournoi_en_cours[0]["Tours"]["Round " + str(round_en_cours)]["Matchs"][
+                    0
+                ]
             )
 
         return played_rounds

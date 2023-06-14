@@ -174,7 +174,7 @@
             "Date de d\u00e9but": "11/09/2023",
             "Date de fin": "15/09/2023",
             "Nombre de tours": 2,
-            "Tour actuel": 1,
+            "Tour actuel": 2,
             "Tours": {
                 "Round 1": {
                     "Start": "14/06/2023 10:24",
@@ -186,21 +186,21 @@
                             ],
                             [
                                 "Vachier-Lagrave Maxime",
-                                0
+                                1
                             ]
                         ],
                         [
                             [
                                 "Bourbon Anthony",
-                                0
+                                0.5
                             ],
                             [
                                 "Larchevque Eric",
-                                0
+                                0.5
                             ]
                         ]
                     ],
-                    "End": ""
+                    "End": "14/06/2023 12:15"
                 }
             },
             "Joueurs": [

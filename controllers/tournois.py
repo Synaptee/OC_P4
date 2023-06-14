@@ -54,6 +54,14 @@ class ControllerTournoi:
         affichage = Affichage()
         affichage.afficher_liste_joueurs_tournoi(tournoi_en_cours)
 
+    @staticmethod
+    def get_current_round(id_tournoi):
+        tournoi_en_cours = ControllerTournoi.search_tournoi(id_tournoi)
+        instance_round = tournoi_en_cours[0]["Tour actuel"]
+        round_datas = tournoi_en_cours[0]["Tours"]["Round " + str(instance_round)]
+        print(round_datas, instance_round)
+        return round_datas, instance_round
+
     def generate_random_matches(self, id_tournoi: str = ""):
         """Generate random matches for the first round of a tournament"""
         tournoi_en_cours = ControllerTournoi.search_tournoi(id_tournoi)
