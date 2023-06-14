@@ -55,6 +55,11 @@ class ControllerTournoi:
         affichage.afficher_liste_joueurs_tournoi(tournoi_en_cours)
 
     @staticmethod
+    def display_rounds_matchs_tournoi(rounds: dict):
+        affichage = Affichage()
+        affichage.afficher_rounds_matchs_tournois(rounds)
+
+    @staticmethod
     def get_current_round(id_tournoi):
         tournoi_en_cours = ControllerTournoi.search_tournoi(id_tournoi)
         instance_round = tournoi_en_cours[0]["Tour actuel"]

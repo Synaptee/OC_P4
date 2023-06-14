@@ -68,7 +68,11 @@ class Menu:
             ControllerTournoi.get_joueurs_tournoi(id_tournoi)
             self.menu_rapports()
         elif choix == "5":
-            print("Liste de tous les tours du tournoi et de tous les matchs du tour")
+            id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
+            datas_round = ControllerTournoi.search_tournoi(id_tournoi)
+            datas_round = datas_round[0]["Tours"]
+            ControllerTournoi.display_rounds_matchs_tournoi(datas_round)
+            self.menu_rapports()
         elif choix == "6":
             self.menu_principal()
         elif choix == "7":
