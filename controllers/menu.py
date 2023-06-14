@@ -4,6 +4,7 @@ from controllers.tournois import ControllerTournoi
 from modele.joueur import Joueur
 from modele.tournois import Tournoi
 from modele.rounds import Round
+import datetime
 
 
 class Menu:
@@ -100,9 +101,25 @@ class Menu:
 
         elif choix == "2":
             id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
-            controller = ControllerTournoi()
-            controller.generate_random_matches(id_tournoi)
-            print("Round 1 généré et tournoi lancé")
+            datas = ControllerTournoi.search_tournoi(id_tournoi)
+            current_round = datas[0]["Tour actuel"]
+            joueurs = datas[0]["Joueurs"]
+            rounds = datas[0]["Tours"]
+            if current_round == "0":
+                controller = ControllerTournoi()
+                controller.generate_random_matches(id_tournoi)
+                print("Round 1 généré et tournoi lancé")
+            else:
+                controller = ControllerTournoi()
+                matchs_joues = controller.get_match_joues(id_tournoi)
+                new_matches = controller.organiser_matchs(joueurs, matchs_joues)
+                round = Round(
+                    name="Round " + str(int(current_round) + 1),
+                    matchs=new_matches,
+                    start_date=datetime.datetime.now().strftime("%d/%m/%Y %H:%M"),
+                    tournament_id=id_tournoi,
+                )
+                round.save_new_round()
             self.menu_tournoi()
 
         elif choix == "3":

@@ -17,15 +17,15 @@ tournoi_en_cours = table.search((Query().ID == id_tournoi))
 joueurs = tournoi_en_cours[0]["Joueurs"]
 
 
-
 def get_match_joues(id_tournoi):
     tournoi_en_cours = table.search((Query().ID == id_tournoi))
-    matchs_deja_joues=[]
+    matchs_deja_joues = []
     round_en_cours = int(tournoi_en_cours[0]["Tour actuel"])
 
-    for i in range(1,round_en_cours+1):
-        
-        matchs_deja_joues.append(tournoi_en_cours[0]["Tours"]["Round " + str(round_en_cours)][0])
+    for i in range(1, round_en_cours + 1):
+        matchs_deja_joues.append(
+            tournoi_en_cours[0]["Tours"]["Round " + str(round_en_cours)]["Matchs"][0]
+        )
 
     return matchs_deja_joues
 
@@ -35,47 +35,13 @@ print(get_match_joues(id_tournoi))
 round_en_cours = tournoi_en_cours[0]["Tour actuel"]
 matchs_en_cours = get_match_joues(id_tournoi)
 
-# Ce script permet de saisir les résultats d'un round en cours
-# et de sauvegarder les résultats dans la base de données
-
-#matchs_en_cours = tournoi_en_cours[0]["Tours"]["Round " + str(round_en_cours)]
-# print(matchs_en_cours)
-# round_results = []
-# for match in matchs_en_cours:
-#     print("\n Indiquez le vainqueur du match : ")
-#     print(f"{match[0][0]} (1) ou {match[1][0]} (2)")
-#     print("Indiquer 0 pour match nul")
-#     result = input("Saisissez le résultat : ")
-
-#     if result == "1":
-#         match[0][1] += 1
-#     elif result == "2":
-#         match[1][1] += 1
-#     elif result == "0":
-#         match[0][1] += 0.5
-#         match[1][1] += 0.5
-#     else:
-#         print("Saisie invalide")
-
-#     round_results.append(match)
-# updated_round_results = tournoi_en_cours[0]
-# updated_round_results["Tours"]["Round " + str(round_en_cours)] = round_results
-# print(round_results)
-# print(updated_round_results)
-# table.update(updated_round_results, Query().ID == id_tournoi)
-# print("Résultats du round enregistrés")
-
-# Génération des matchs du round suivant
-# print(matchs_en_cours)
-
-
-
-
 
 def already_played(matchs_en_cours, joueur1, joueur2):
     for match in matchs_en_cours:
         # print(f"Le match est : {match}")
-        if (joueur1 in match[0] or joueur1 in match[1]) and (joueur2 in match[0] or joueur2 in match[1]):
+        if (joueur1 in match[0] or joueur1 in match[1]) and (
+            joueur2 in match[0] or joueur2 in match[1]
+        ):
             print(f"{joueur1} et {joueur2} ont déjà joué ensemble")
 
             return True
@@ -99,7 +65,7 @@ def organiser_matchs(joueurs, matchs_joues):
                 # print(points)  # Récupération du score du joueur dans le match
         joueurs_points[joueur] = points
 
-    #print(joueurs_points)
+    # print(joueurs_points)
 
     # Tri des joueurs par points (du plus élevé au plus bas)
     joueurs_tries = sorted(joueurs, key=lambda x: joueurs_points[x], reverse=True)

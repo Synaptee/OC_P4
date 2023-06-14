@@ -31,7 +31,7 @@ class MenuView:
     def afficher_menu_tournoi():
         print("\n * Tournoi * \n")
         print("[1] Sélectionner des joueurs dans la liste")
-        print("[2] Lancer le tournoi et générer le round 1")
+        print("[2] Lancer le prochain round")
         print("[3] Reprendre le tournoi")
         print("[4] Saisir les résultats du round")
         print("[5] Revenir au menu principal")

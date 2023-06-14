@@ -7,14 +7,15 @@ base_dir = Path(__file__).resolve().parent.parent
 db_path = base_dir / "database" / "tournois.json"
 
 
-db = TinyDB(db_path)
-table = db.table("_default")
-tournois = table.all()
+# tournois = table.all()
 # Récupérer la liste des rounds en cours
 # id_tournoi = "BLP2223"
 
 
 class Round:
+    db = TinyDB(db_path)
+    table = db.table("_default")
+
     def __init__(
         self,
         name: str = "",
@@ -31,7 +32,7 @@ class Round:
 
     def generate_first_round(self):
         """Function that generates the first round of a tournament"""
-        tournament_datas = table.search((Query().ID == self.tournament_id))
+        tournament_datas = self.table.search((Query().ID == self.tournament_id))
         player_list = tournament_datas[0]["Joueurs"]
         num_players = len(player_list)
 
@@ -86,17 +87,17 @@ class Round:
 
     def save_round_results(self, id_tournoi: str = ""):
         """Function that save round results in the database"""
-        tournoi_en_cours = table.search((Query().ID == id_tournoi))
+        tournoi_en_cours = self.table.search((Query().ID == id_tournoi))
         updated_tournoi = tournoi_en_cours[0]
         updated_tournoi["Tours"][self.name]["Matchs"] = self.matchs
         updated_tournoi["Tours"][self.name]["End"] = self.end_date
         updated_tournoi["Tour actuel"] += 1
-        table.update(updated_tournoi, Query().ID == id_tournoi)
+        self.table.update(updated_tournoi, Query().ID == id_tournoi)
         print("Résultats du round enregistrés")
 
     def get_played_rounds(self) -> list:
         """Function that returns the list of played rounds"""
-        tournoi_en_cours = table.search((Query().ID == self.tournament_id))
+        tournoi_en_cours = self.table.search((Query().ID == self.tournament_id))
         played_rounds = []
         round_en_cours = int(tournoi_en_cours[0]["Tour actuel"])
 
@@ -109,6 +110,24 @@ class Round:
 
         return played_rounds
 
+    def save_new_round(self):
+        item = self.db.get(Query().ID == self.tournament_id)
+        tour = item["Tours"]
+        new_round = {}
+        new_round["Start"] = self.start_date
+        new_round["Matchs"] = self.matchs
+        new_round["End"] = self.end_date
+        tour[self.name] = new_round
+        print(self.name)
+        print(f"Le tour est : {tour}")
+        self.db.update({"Tours": tour}, doc_ids=[item.doc_id])
+        # tournoi_en_cours = table.search((Query().ID == self.tournament_id))
+        # tournoi_en_cours[0]["Tours"][self.name] = new_round
+
+        # self.db.insert({"ID": self.tournament_id, "Tours": {self.name: new_round}})
+
+        print("Nouveau round enregistré")
+
 
 # Récupérer la liste des rounds en cours
 # id_tournoi = "BLP2223"
@@ -118,8 +137,8 @@ class Round:
 # print(f'Le nom du round est {nom_round}')
 
 
-Current_Round = Round(tournament_id="BLP2223")
-# Current_Round.enter_round_results()
-Current_Round.generate_first_round()
-print(Current_Round.matchs)
-print(Current_Round.start_date)
+# Current_Round = Round(tournament_id="BLP2223")
+# # Current_Round.enter_round_results()
+# Current_Round.generate_first_round()
+# print(Current_Round.matchs)
+# print(Current_Round.start_date)
