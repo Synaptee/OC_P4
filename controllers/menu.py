@@ -130,9 +130,6 @@ class Menu:
             self.menu_tournoi()
 
         elif choix == "3":
-            self.display_tournois()
-            tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
-        elif choix == "4":
             tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
             datas_round = ControllerTournoi.get_current_round(tournoi)
             name_round = "Round " + str(datas_round[1])
@@ -143,9 +140,9 @@ class Menu:
             round.enter_round_results()
             round.save_round_results(tournoi)
             self.menu_tournoi()
-        elif choix == "5":
+        elif choix == "4":
             self.menu_principal()
-        elif choix == "6":
+        elif choix == "5":
             print("Fin du programme")
 
         else:
