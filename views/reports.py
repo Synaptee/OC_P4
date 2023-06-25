@@ -78,7 +78,6 @@ class Affichage:
         print("\n Liste des joueurs du tournoi : ")
 
         infos = sorted([infos_tournois[0]["Joueurs"]][0])
-        print(infos)
         liste_joueurs = []
         for joueur in infos:
             liste_joueurs.append([joueur])

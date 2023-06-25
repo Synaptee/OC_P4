@@ -21,7 +21,6 @@ class Menu:
             prenom = input("Saisissez le prénom du joueur : ")
             date_de_naissance = input("Saisissez la date de naissance du joueur : ")
             id_national = input("Saisissez l'ID national du joueur : ")
-            # Joueur.ajouter_joueur(nom, prenom, date_de_naissance, id_national)
             joueur = Joueur(nom, prenom, date_de_naissance, id_national)
             joueur.ajouter_joueur()
             self.menu_principal()
@@ -41,10 +40,11 @@ class Menu:
             tournoi.ajouter_tournoi()
             self.menu_tournoi()
         elif choix == "3":
-            # pass
             self.menu_tournoi()
         elif choix == "4":
             self.menu_rapports()
+        elif choix == "5":
+            pass
         else:
             print("Option non disponible")
 

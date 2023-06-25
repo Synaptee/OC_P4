@@ -27,9 +27,7 @@ class ControllerJoueur:
             )
 
     def afficher_liste_joueurs(self):
-        affichage = (
-            Affichage()
-        )  # Initule de créer une instance de la classe Affichage puisque j'appelle une @staticmethod
+        affichage = Affichage()
         affichage.afficher_liste_joueurs(self.liste_joueurs)
 
     def selectionner_joueurs(self, nb_joueurs: int):
