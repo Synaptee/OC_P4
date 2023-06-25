@@ -68,7 +68,6 @@ class Round:
             round_results.append(match)
 
         self.matchs = round_results
-        print(self.matchs)
         self.end_date = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
 
     def save_round_results(self, id_tournoi: str = ""):
@@ -77,7 +76,7 @@ class Round:
         updated_tournoi = tournoi_en_cours[0]
         updated_tournoi["Tours"][self.name]["Matchs"] = self.matchs
         updated_tournoi["Tours"][self.name]["End"] = self.end_date
-        updated_tournoi["Tour actuel"] += 1
+        # updated_tournoi["Tour actuel"] += 1
         self.table.update(updated_tournoi, Query().ID == id_tournoi)
         print("Résultats du round enregistrés")
 
@@ -98,6 +97,7 @@ class Round:
 
     def save_new_round(self):
         item = self.db.get(Query().ID == self.tournament_id)
+        print(item)
         tour = item["Tours"]
         new_round = {}
         new_round["Start"] = self.start_date

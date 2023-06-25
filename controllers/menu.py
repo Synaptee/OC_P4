@@ -102,24 +102,31 @@ class Menu:
         elif choix == "2":
             id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
             datas = ControllerTournoi.search_tournoi(id_tournoi)
-            current_round = datas[0]["Tour actuel"]
+            current_round = str(datas[0]["Tour actuel"])
             joueurs = datas[0]["Joueurs"]
-            rounds = datas[0]["Tours"]
-            if current_round == "0":
-                controller = ControllerTournoi()
-                controller.generate_random_matches(id_tournoi)
-                print("Round 1 généré et tournoi lancé")
+            nb_tours = datas[0]["Nombre de tours"]
+            if current_round == str(nb_tours):
+                print("Le dernier round de ce tournoi a déjà été lancé")
             else:
-                controller = ControllerTournoi()
-                matchs_joues = controller.get_match_joues(id_tournoi)
-                new_matches = controller.organiser_matchs(joueurs, matchs_joues)
-                round = Round(
-                    name="Round " + str(int(current_round) + 1),
-                    matchs=new_matches,
-                    start_date=datetime.datetime.now().strftime("%d/%m/%Y %H:%M"),
-                    tournament_id=id_tournoi,
-                )
-                round.save_new_round()
+                if current_round == "0":
+                    controller = ControllerTournoi()
+                    controller.generate_random_matches(id_tournoi)
+                    print("Round 1 généré et tournoi lancé")
+                else:
+                    controller = ControllerTournoi()
+                    matchs_joues = controller.get_match_joues(id_tournoi)
+                    new_matches = controller.organiser_matchs(joueurs, matchs_joues)
+                    round = Round(
+                        name="Round " + str(int(current_round) + 1),
+                        matchs=new_matches,
+                        start_date=datetime.datetime.now().strftime("%d/%m/%Y %H:%M"),
+                        tournament_id=id_tournoi,
+                    )
+
+                    round.save_new_round()
+                    current_round = int(current_round) + 1
+                    controller = ControllerTournoi()
+                    controller.update_current_round(id_tournoi, current_round)
             self.menu_tournoi()
 
         elif choix == "3":
@@ -129,9 +136,9 @@ class Menu:
             tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
             datas_round = ControllerTournoi.get_current_round(tournoi)
             name_round = "Round " + str(datas_round[1])
-            print(f"Round en cours : {name_round}")
+            # print(f"Round en cours : {name_round}")
             matchs_round = datas_round[0]["Matchs"]
-            print(f"Matchs du round : {matchs_round}")
+            # print(f"Matchs du round : {matchs_round}")
             round = Round(name=name_round, matchs=matchs_round)
             round.enter_round_results()
             round.save_round_results(tournoi)
