@@ -4,7 +4,7 @@ from tabulate import tabulate
 class Affichage:
     @staticmethod
     def afficher_liste_joueurs(liste_joueurs: list):
-        """Function that displays the list of players, by alphabetical order"""
+        """Fonction qui affiche la liste des joueurs, par ordre alphabétique"""
         print("\n Liste des joueurs : ")
         donnees_joueurs = []
 
@@ -26,7 +26,7 @@ class Affichage:
 
     @staticmethod
     def afficher_liste_tournois(liste_tournois: list):
-        """Function that displays the list of tournaments, with their informations"""
+        """Fonction qui affiche la liste des tournois, avec leur statut (en cours ou terminé)"""
         print("\n Liste des tournois : ")
         donnees_tournois = []
         for tournoi in liste_tournois:
@@ -56,7 +56,7 @@ class Affichage:
 
     @staticmethod
     def afficher_infos_tournois(infos_tournois: list):
-        """Function that displays the informations of a specified tournament : name and start date"""
+        """Fonction qui affiche les informations d'un tournoi donné : date de début et nom"""
         print("\n Nom et date du tournoi demandé : ")
         tournoi = []
         infos = [infos_tournois[0]["Nom"], infos_tournois[0]["Date de début"]]
@@ -68,7 +68,7 @@ class Affichage:
 
     @staticmethod
     def afficher_liste_joueurs_tournoi(infos_tournois: list):
-        """Function that displays the list of players, for a specified tournament"""
+        """Fonction qui affiche la liste des joueurs d'un tournoi donné, par ordre alphabétique"""
         print("\n Liste des joueurs du tournoi : ")
 
         infos = sorted([infos_tournois[0]["Joueurs"]][0])
@@ -81,6 +81,7 @@ class Affichage:
 
     @staticmethod
     def afficher_rounds_matchs_tournois(rounds: dict):
+        """Fonction qui affiche tous les rounds et les matchs d'un tournoi donné"""
         for round in rounds:
             print(f" \n ********** {round} ********** ")
             datas_round = []

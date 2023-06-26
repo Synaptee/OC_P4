@@ -5,7 +5,7 @@ from pathlib2 import Path
 
 
 def check_bdd_exists():
-    """Function that check if database already exists, and if not, creates the database"""
+    """Fonction qui vérifie si les bases de données existent, sinon les crée"""
     base_dir = Path(__file__).resolve().parent
     joueurs_path = base_dir / "database" / "joueurs.json"
     tournois_path = base_dir / "database" / "tournois.json"
@@ -18,6 +18,7 @@ def check_bdd_exists():
 
 
 def main():
+    """Fontion principale du programme"""
     check_bdd_exists()
     menu = Menu()
     menu.menu_principal()

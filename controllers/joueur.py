@@ -14,6 +14,7 @@ class ControllerJoueur:
         self.db = TinyDB(db_path)
 
     def charger_joueurs(self):
+        """Charge les joueurs depuis la base de données et les stocke dans une liste"""
         joueurs = self.db.table("_default").all()
         joueurs_tries = sorted(joueurs, key=lambda joueur: joueur["Nom"])
         for joueur in joueurs_tries:
@@ -27,10 +28,12 @@ class ControllerJoueur:
             )
 
     def afficher_liste_joueurs(self):
+        """Affiche la liste des joueurs stockés dans la liste"""
         affichage = Affichage()
         affichage.afficher_liste_joueurs(self.liste_joueurs)
 
     def selectionner_joueurs(self, nb_joueurs: int):
+        """Sélectionne aléatoirement un nombre de joueurs donné dans la liste des joueurs existants"""
         joueurs = self.db.table("_default").all()
         if nb_joueurs > len(joueurs):
             raise ValueError(

@@ -26,7 +26,7 @@ class Round:
         self.tournament_id = tournament_id
 
     def generate_first_round(self):
-        """Function that generates the first round of a tournament"""
+        """Fonction qui génère le premier round d'un tournoi"""
         tournament_datas = self.table.search((Query().ID == self.tournament_id))
         player_list = tournament_datas[0]["Joueurs"]
         num_players = len(player_list)
@@ -47,7 +47,7 @@ class Round:
         self.start_date = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
 
     def enter_round_results(self):
-        """Function that enables you to enter round matches resutlts"""
+        """Fonction qui permet d'entrer les résultats d'un round et d'attribuer les points"""
         round_results = []
         for match in self.matchs:
             print("\n Indiquez le vainqueur du match : ")
@@ -71,17 +71,16 @@ class Round:
         self.end_date = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
 
     def save_round_results(self, id_tournoi: str = ""):
-        """Function that save round results in the database"""
+        """Fonction qui enregistre les résultats d'un round dans la base de données"""
         tournoi_en_cours = self.table.search((Query().ID == id_tournoi))
         updated_tournoi = tournoi_en_cours[0]
         updated_tournoi["Tours"][self.name]["Matchs"] = self.matchs
         updated_tournoi["Tours"][self.name]["End"] = self.end_date
-        # updated_tournoi["Tour actuel"] += 1
         self.table.update(updated_tournoi, Query().ID == id_tournoi)
         print("Résultats du round enregistrés")
 
     def get_played_rounds(self) -> list:
-        """Function that returns the list of played rounds"""
+        """Fonction qui"""
         tournoi_en_cours = self.table.search((Query().ID == self.tournament_id))
         played_rounds = []
         round_en_cours = int(tournoi_en_cours[0]["Tour actuel"])
@@ -96,6 +95,7 @@ class Round:
         return played_rounds
 
     def save_new_round(self):
+        """Fonction qui enregistre un nouveau round dans la base de données"""
         item = self.db.get(Query().ID == self.tournament_id)
         print(item)
         tour = item["Tours"]
@@ -104,8 +104,6 @@ class Round:
         new_round["Matchs"] = self.matchs
         new_round["End"] = self.end_date
         tour[self.name] = new_round
-        print(self.name)
-        print(f"Le tour est : {tour}")
         self.db.update({"Tours": tour}, doc_ids=[item.doc_id])
 
         print("Nouveau round enregistré")

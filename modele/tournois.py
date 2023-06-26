@@ -38,6 +38,7 @@ class Tournoi:
             self.ID = ID
 
     def ajouter_tournoi(self):
+        """Ajouter un tournoi à la base de données"""
         self.table.insert(
             {
                 "Nom": self.nom,
@@ -56,4 +57,5 @@ class Tournoi:
 
     @staticmethod
     def ajouter_liste_joueurs_au_tournoi(liste_joueurs, id_tournoi):
+        """Ajouter une liste de joueurs comme participants à un tournoi"""
         Tournoi.table.update({"Joueurs": liste_joueurs}, Query().ID == id_tournoi)

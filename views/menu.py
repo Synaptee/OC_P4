@@ -4,8 +4,8 @@ class MenuView:
 
     @staticmethod
     def afficher_titre_principal():
-        print("   ***   Gestionnaire de tournois d'echecs   ***   ")
-        print("Bienvenue dans le gestionnaire de tournois d'échecs")
+        print("\n   ***   Gestionnaire de tournois d'echecs   ***   ")
+        print("Bienvenue dans le gestionnaire de tournois d'échecs \n")
 
     @staticmethod
     def afficher_menu():

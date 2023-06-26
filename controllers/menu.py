@@ -58,7 +58,7 @@ class Menu:
             display.afficher_liste_joueurs()
             self.menu_rapports()
         elif choix == "2":
-            self.display_tournois()
+            self.afficher_tournois()
             self.menu_rapports()
         elif choix == "3":
             id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
@@ -166,12 +166,14 @@ class Menu:
         else:
             print("Option non disponible")
 
-    def display_tournois(self):
+    def afficher_tournois(self):
+        """Affiche la liste des tournois enregistrés dans la base de données"""
         display = ControllerTournoi()
         display.charger_tournois()
         display.afficher_liste_tournois()
 
     def check_id_tournoi(self, id_tournoi):
+        """Vérifie si l'ID tournoi saisi par l'utilisateur est valide et existe dans la base de données"""
         check = ControllerTournoi()
         if not id_tournoi in check.get_tournament_ids():
             print("Cet ID n'existe pas")
