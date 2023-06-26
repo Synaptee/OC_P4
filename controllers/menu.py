@@ -62,14 +62,21 @@ class Menu:
             self.menu_rapports()
         elif choix == "3":
             id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
+            if not self.check_id_tournoi(id_tournoi):
+                self.menu_rapports()
             ControllerTournoi.get_tournoi(id_tournoi)
             self.menu_rapports()
         elif choix == "4":
             id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
+            if not self.check_id_tournoi(id_tournoi):
+                self.menu_rapports()
+
             ControllerTournoi.get_joueurs_tournoi(id_tournoi)
             self.menu_rapports()
         elif choix == "5":
             id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
+            if not self.check_id_tournoi(id_tournoi):
+                self.menu_rapports()
             datas_round = ControllerTournoi.search_tournoi(id_tournoi)
             datas_round = datas_round[0]["Tours"]
             ControllerTournoi.display_rounds_matchs_tournoi(datas_round)
@@ -88,6 +95,8 @@ class Menu:
         choix = input("Saisissez votre choix : ")
         if choix == "1":
             id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
+            if not self.check_id_tournoi(id_tournoi):
+                self.menu_tournoi()
             nb_joueurs = int(input("Saisissez le nombre de joueurs à sélectionner : "))
             display = ControllerJoueur()
             liste_joueurs_selectionnes = display.selectionner_joueurs(nb_joueurs)
@@ -101,6 +110,8 @@ class Menu:
 
         elif choix == "2":
             id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
+            if not self.check_id_tournoi(id_tournoi):
+                self.menu_tournoi()
             datas = ControllerTournoi.search_tournoi(id_tournoi)
             current_round = str(datas[0]["Tour actuel"])
             joueurs = datas[0]["Joueurs"]
@@ -136,6 +147,8 @@ class Menu:
 
         elif choix == "3":
             tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
+            if not self.check_id_tournoi(id_tournoi):
+                self.menu_tournoi()
             datas_round = ControllerTournoi.get_current_round(tournoi)
             name_round = "Round " + str(datas_round[1])
             # print(f"Round en cours : {name_round}")
@@ -157,3 +170,10 @@ class Menu:
         display = ControllerTournoi()
         display.charger_tournois()
         display.afficher_liste_tournois()
+
+    def check_id_tournoi(self, id_tournoi):
+        check = ControllerTournoi()
+        if not id_tournoi in check.get_tournament_ids():
+            print("Cet ID n'existe pas")
+        else:
+            pass

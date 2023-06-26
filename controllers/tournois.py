@@ -173,3 +173,14 @@ class ControllerTournoi:
                 matchs_deja_joues.append(matchs[j - 1])
 
         return matchs_deja_joues
+
+    def get_tournament_ids(self):
+        """Load all tournaments IDs from database"""
+        tournois = self.db.table("_default").all()
+        IDs = []
+        for tournoi in tournois:
+            IDs.append(
+                tournoi["ID"],
+            )
+        # print(IDs)
+        return IDs
