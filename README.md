@@ -70,13 +70,14 @@ Lancez le programme en utilisant la commande `python main.py`.
 + **Sélectionner des joueurs à ajouter**
 
 + **Lancer le prochain round**
-Il vous sera demandé l'ID du tournoi. 
 
-* Si le round suivant est le premier round, alors les paires de joueurs sont créées aléatoirement.
+    Il vous sera demandé l'ID du tournoi. 
 
-* Si le round suivant n'est pas le premier round, les paires de joueurs sont organisées en fonction du classement des joueurs.
+    * Si le round suivant est le premier round, alors les paires de joueurs sont créées aléatoirement.
 
-Deux joueurs ne doivent normalement pas s'affronter 2 fois au cours d'un même tournoi. 
+    * Si le round suivant n'est pas le premier round, les paires de joueurs sont organisées en fonction du classement des joueurs.
+
+    Deux joueurs ne doivent normalement pas s'affronter 2 fois au cours d'un même tournoi. 
 
 + **Saisir les résultats d'un round**
 
