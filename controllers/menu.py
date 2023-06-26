@@ -64,6 +64,7 @@ class Menu:
             id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
             if not self.check_id_tournoi(id_tournoi):
                 self.menu_rapports()
+
             ControllerTournoi.get_tournoi(id_tournoi)
             self.menu_rapports()
         elif choix == "4":
@@ -177,5 +178,6 @@ class Menu:
         check = ControllerTournoi()
         if not id_tournoi in check.get_tournament_ids():
             print("Cet ID n'existe pas")
+            return False
         else:
-            pass
+            return True

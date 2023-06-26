@@ -51,10 +51,10 @@ Lancez le programme en utilisant la commande `python main.py`.
 
 ## Exemples de rapports
 
-+ **Liste des joueurs dans la base de données**
++ **Liste des joueurs par ordre alphabétique**
 ![Alt text](captures/rapport_joueurs.png)
 
-+ **Liste de tous les tournois dans la base de données**
++ **Liste de tous les tournois (dans la base de données)**
 ![Alt text](captures/rapport_tournois.png)
 
 + **Nom et date d'un tournoi donné**
