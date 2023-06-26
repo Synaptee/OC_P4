@@ -110,8 +110,13 @@ class Menu:
             else:
                 if current_round == "0":
                     controller = ControllerTournoi()
-                    controller.generate_random_matches(id_tournoi)
-                    print("Round 1 généré et tournoi lancé")
+                    if controller.check_if_players(id_tournoi):
+                        controller.generate_random_matches(id_tournoi)
+                        print("Round 1 généré et tournoi lancé")
+                    else:
+                        print(
+                            "Le tournoi ne peut pas être lancé car aucun joueur n'a été ajouté"
+                        )
                 else:
                     controller = ControllerTournoi()
                     matchs_joues = controller.get_match_joues(id_tournoi)

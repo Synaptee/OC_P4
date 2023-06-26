@@ -17,6 +17,7 @@ class ControllerTournoi:
         self.liste_tournois = []
 
     def charger_tournois(self):
+        """Load all tournaments from database"""
         tournois = self.db.table("_default").all()
         for tournoi in tournois:
             self.liste_tournois.append(
@@ -34,38 +35,52 @@ class ControllerTournoi:
             )
 
     def afficher_liste_tournois(self):
+        """Display all tournaments from database"""
         affichage = Affichage()
         affichage.afficher_liste_tournois(self.liste_tournois)
 
     @staticmethod
     def search_tournoi(id_tournoi):
+        """Search a tournament in the database by its ID"""
         tournoi_en_cours = ControllerTournoi.table.search((Query().ID == id_tournoi))
         return tournoi_en_cours
 
     @staticmethod
     def get_tournoi(id_tournoi):
+        """Get a tournament in the database by its ID and display it"""
         tournoi_en_cours = ControllerTournoi.search_tournoi(id_tournoi)
         affichage = Affichage()
         affichage.afficher_infos_tournois(tournoi_en_cours)
 
     @staticmethod
     def get_joueurs_tournoi(id_tournoi):
+        """Get players from a tournament in the database by its ID and display them"""
         tournoi_en_cours = ControllerTournoi.search_tournoi(id_tournoi)
         affichage = Affichage()
         affichage.afficher_liste_joueurs_tournoi(tournoi_en_cours)
 
     @staticmethod
     def display_rounds_matchs_tournoi(rounds: dict):
+        """Display all rounds and matches from a tournament"""
         affichage = Affichage()
         affichage.afficher_rounds_matchs_tournois(rounds)
 
     @staticmethod
     def get_current_round(id_tournoi):
+        """Get the current round of a tournament"""
         tournoi_en_cours = ControllerTournoi.search_tournoi(id_tournoi)
         instance_round = str(tournoi_en_cours[0]["Tour actuel"])
         round_datas = tournoi_en_cours[0]["Tours"]["Round " + str(instance_round)]
         # print(round_datas, instance_round)
         return round_datas, instance_round
+
+    def check_if_players(self, id_tournoi: str = ""):
+        """Check if there are players in the tournament"""
+        tournoi_en_cours = ControllerTournoi.search_tournoi(id_tournoi)
+        if tournoi_en_cours[0]["Joueurs"] == []:
+            return False
+        else:
+            return True
 
     def generate_random_matches(self, id_tournoi: str = ""):
         """Generate random matches for the first round of a tournament"""
@@ -104,6 +119,7 @@ class ControllerTournoi:
         # return matches
 
     def update_current_round(self, id_tournoi, current_round):
+        """Update the current round of a tournament in the database"""
         item = self.db.get(Query().ID == id_tournoi)
         # tournoi_en_cours = ControllerTournoi.search_tournoi(id_tournoi)
         # print(tournoi_en_cours)
@@ -116,6 +132,7 @@ class ControllerTournoi:
         self.db.update({"Tour actuel": current_tour}, doc_ids=[item.doc_id])
 
     def already_played(self, matchs_en_cours, joueur1, joueur2):
+        """Check if two players have already played together in the tournament"""
         for match in matchs_en_cours:
             print(f"Le match est : {match}")
             if (joueur1 in match[0] or joueur1 in match[1]) and (
@@ -128,6 +145,7 @@ class ControllerTournoi:
         return False
 
     def organiser_matchs(self, joueurs, matchs_joues):
+        """Organize matches for the next round of a tournament"""
         matchs_futurs = []
         joueurs_points = {}
 
@@ -167,6 +185,7 @@ class ControllerTournoi:
         return matchs_futurs
 
     def get_match_joues(self, id_tournoi):
+        """Get all matches already played in a tournament"""
         tournoi_en_cours = self.table.search((Query().ID == id_tournoi))
         matchs_deja_joues = []
         round_en_cours = int(tournoi_en_cours[0]["Tour actuel"])
