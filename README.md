@@ -27,7 +27,7 @@ Lancez le programme en utilisant la commande `python main.py`.
 ## Menus principaux
 
 1. Menu principal 
-![Alt text](captures/menu_principal.png.png)
+![Alt text](captures/menu_principal.png)
 
 
 
