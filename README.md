@@ -52,7 +52,7 @@ Lancez le programme en utilisant la commande `python main.py`.
 ## Exemples de rapports
 
 + **Liste des joueurs dans la base de données**
-![Alt text](captures/rapport_joueur.png)
+![Alt text](captures/rapport_joueurs.png)
 
 + **Liste de tous les tournois dans la base de données**
 ![Alt text](captures/rapport_tournois.png)
