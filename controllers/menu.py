@@ -148,7 +148,7 @@ class Menu:
 
         elif choix == "3":
             tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
-            if not self.check_id_tournoi(id_tournoi):
+            if not self.check_id_tournoi(tournoi):
                 self.menu_tournoi()
             datas_round = ControllerTournoi.get_current_round(tournoi)
             name_round = "Round " + str(datas_round[1])

@@ -81,6 +81,12 @@ Lancez le programme en utilisant la commande `python main.py`.
 
 + **Saisir les résultats d'un round**
 
+    Il vous sera demandé l'ID du tournoi, puis il vous faudra désigner le vainqueur de chaque match du round en cours. 
+
+    * Saisir **1** si le joueur **(1)** a gagné
+    * Saisir **2** si le joueur **(2)** a gagné
+    * Saisir **0** si c'est un **match nul**
+    ![Alt text](captures/tournoi_resultats.png)
 
 
 
