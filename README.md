@@ -58,15 +58,25 @@ Lancez le programme en utilisant la commande `python main.py`.
 ![Alt text](captures/rapport_tournois.png)
 
 + **Nom et date d'un tournoi donné**
+![Alt text](captures/rapport_info_tournoi.png)
 
 + **Liste des joueurs d'un tournoi donné**
+![Alt text](captures/rapport_joueurs_tournoi.png)
 
 + **Liste de tous les tours et de tous les latchs du tour, d'un tournoi donné**
+![Alt text](captures/rapport_rounds_tournoi.png)
 
 ## Exemples de gestion d'un tournoi
 + **Sélectionner des joueurs à ajouter**
 
-+ **Lancer un nouveau round**
++ **Lancer le prochain round**
+Il vous sera demandé l'ID du tournoi. 
+
+* Si le round suivant est le premier round, alors les paires de joueurs sont créées aléatoirement.
+
+* Si le round suivant n'est pas le premier round, les paires de joueurs sont organisées en fonction du classement des joueurs.
+
+Deux joueurs ne doivent normalement pas s'affronter 2 fois au cours d'un même tournoi. 
 
 + **Saisir les résultats d'un round**
 
