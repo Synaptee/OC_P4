@@ -20,6 +20,10 @@ Pensez bien à activer vote environnement virtuel avec la commande : `. .venv/bi
 
 
 ## Création d'un rapport Flake8
+
+Pour générer un nouveau rapport, utilisez la commande `flake8 --format=html --htmldir=flake8_rapport flake8_rapport/`   
+
+![Rapport HTML Flake8](captures/flake8.png)
 ## Utilisation
 
 Lancez le programme en utilisant la commande `python main.py`.
