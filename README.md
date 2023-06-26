@@ -18,8 +18,17 @@ Pensez bien à activer vote environnement virtuel avec la commande : `. .venv/bi
 1. Cloner le projet sur votre ordinateur : `git clone https://github.com/Synaptee/OC_P4.git`
 2. Installer les dépendances en utilisant pip : `pip install -r requirements.txt`
 
+
+## Création d'un rapport Flake8
 ## Utilisation
 
 Lancez le programme en utilisant la commande `python main.py`.
+
+## Menus principaux
+
+1. Menu principal 
+![Alt text](captures/menu_principal.png.png)
+
+
 
 
