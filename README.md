@@ -26,8 +26,34 @@ Lancez le programme en utilisant la commande `python main.py`.
 
 ## Menus principaux
 
-1. Menu principal 
+1. **Menu principal**
 ![Alt text](captures/menu_principal.png)
+
+2. **Menu rapports**
+
+3. **Menu tournoi**
+
+## Exemples de rapports
+
++ **Liste des joueurs dans la base de données**
+
++ **Liste de tous les tournois dans la base de données**
+
++ **Nom et date d'un tournoi donné**
+
++ **Liste des joueurs d'un tournoi donné**
+
++ **Liste de tous les tours et de tous les latchs du tour, d'un tournoi donné**
+
+## Exemples de gestion d'un tournoi
++ **Sélectionner des joueurs à ajouter**
+
++ **Lancer un nouveau round**
+
++ **Saisir les résultats d'un round**
+
+
+
 
 
 
