@@ -29,15 +29,33 @@ Lancez le programme en utilisant la commande `python main.py`.
 1. **Menu principal**
 ![Alt text](captures/menu_principal.png)
 
+    1. Pour ajouter un joueur, il vous sera demandé de fournir :
+        * Nom
+        * Prénom
+        * Date de naissance
+        * ID national d'échec
+    
+    2. Pour créer un tournoi, il vous sera demandé de fournir :
+        * Nom
+        * Lieu
+        * Date de début
+        * Date de fin
+        * Nombre de tours (4 par défauts)
+        * Description
+
 2. **Menu rapports**
+![Alt text](captures/menu_rapports.png)
 
 3. **Menu tournoi**
+![Alt text](captures/menu_tournoi.png)
 
 ## Exemples de rapports
 
 + **Liste des joueurs dans la base de données**
+![Alt text](captures/rapport_joueur.png)
 
 + **Liste de tous les tournois dans la base de données**
+![Alt text](captures/rapport_tournois.png)
 
 + **Nom et date d'un tournoi donné**
 
