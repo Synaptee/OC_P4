@@ -71,7 +71,6 @@ class ControllerTournoi:
         tournoi_en_cours = ControllerTournoi.search_tournoi(id_tournoi)
         instance_round = str(tournoi_en_cours[0]["Tour actuel"])
         round_datas = tournoi_en_cours[0]["Tours"]["Round " + str(instance_round)]
-        # print(round_datas, instance_round)
         return round_datas, instance_round
 
     def check_if_players(self, id_tournoi: str = ""):
@@ -88,13 +87,12 @@ class ControllerTournoi:
         player_list = tournoi_en_cours[0]["Joueurs"]
         num_players = len(player_list)
 
-        # Vérification si le nombre de joueurs est impair
         if num_players % 2 != 0:
             raise ValueError(
                 "Le nombre de joueurs doit être pair pour générer des matchs."
             )
 
-        random.shuffle(player_list)  # Mélange aléatoire des joueurs
+        random.shuffle(player_list)
 
         matches = {}
         round_name = "Round 1"
@@ -105,30 +103,19 @@ class ControllerTournoi:
         matches[round_name]["Matchs"] = []
         matches[round_name]["End"] = ""
 
-        # Création des paires de joueurs
         for i in range(0, num_players, 2):
             match = ([player_list[i], 0], [player_list[i + 1], 0])
             matches[round_name]["Matchs"].append(match)
-        # print(matches)
         updated_tournoi = tournoi_en_cours[0]
         updated_tournoi["Tour actuel"] = 1
         updated_tournoi["Tours"] = matches
-        # print(updated_tournoi)
         self.table.update(updated_tournoi, Query().ID == id_tournoi)
-
-        # return matches
 
     def update_current_round(self, id_tournoi, current_round):
         """Update the current round of a tournament in the database"""
         item = self.db.get(Query().ID == id_tournoi)
-        # tournoi_en_cours = ControllerTournoi.search_tournoi(id_tournoi)
-        # print(tournoi_en_cours)
         current_tour = item["Tour actuel"]
-        # updated_tournoi = tournoi_en_cours[0]
-        # updated_tournoi["Tour actuel"] = current_round
         current_tour = current_tour + 1
-        # print(updated_tournoi)
-        # self.table.update(updated_tournoi, Query().ID == id_tournoi)
         self.db.update({"Tour actuel": current_tour}, doc_ids=[item.doc_id])
 
     def already_played(self, matchs_en_cours, joueur1, joueur2):
@@ -138,10 +125,7 @@ class ControllerTournoi:
             if (joueur1 in match[0] or joueur1 in match[1]) and (
                 joueur2 in match[0] or joueur2 in match[1]
             ):
-                # print(f"{joueur1} et {joueur2} ont déjà joué ensemble")
-
                 return True
-        # print(f"{joueur1} et {joueur2} n'ont pas encore joué ensemble")
         return False
 
     def organiser_matchs(self, joueurs, matchs_joues):
@@ -149,27 +133,20 @@ class ControllerTournoi:
         matchs_futurs = []
         joueurs_points = {}
 
-        # Calcul des points de chaque joueur
         for joueur in joueurs:
             points = 0
             for match in matchs_joues:
-                # print("BANCO")
                 if match[0][0] == joueur:
                     points += match[0][1]
                 elif match[1][0] == joueur:
                     points += match[1][1]
-                    # print(points)  # Récupération du score du joueur dans le match
             joueurs_points[joueur] = points
 
         print(joueurs_points)
 
-        # Tri des joueurs par points (du plus élevé au plus bas)
         joueurs_tries = sorted(joueurs, key=lambda x: joueurs_points[x], reverse=True)
-        # print(joueurs_tries)
-        # return joueurs_tries
 
         while len(joueurs_tries) != 0:
-            # for i in range(0, len(joueurs_tries)):
             i = 0
             joueur1 = joueurs_tries[i]
             joueur2 = joueurs_tries[i + 1] if i + 1 < len(joueurs_tries) else None
@@ -189,12 +166,10 @@ class ControllerTournoi:
         tournoi_en_cours = self.table.search((Query().ID == id_tournoi))
         matchs_deja_joues = []
         round_en_cours = int(tournoi_en_cours[0]["Tour actuel"])
-        # print(f"Le round en cours est le round {round_en_cours}")
 
         for i in range(1, round_en_cours + 1):
             matchs = tournoi_en_cours[0]["Tours"]["Round " + str(i)]["Matchs"]
             for j in range(1, len(matchs) + 1):
                 matchs_deja_joues.append(matchs[j - 1])
-                # matchs.pop(0)
-        # print(f"Les matchs déjà joués sont : {matchs_deja_joues}")
+
         return matchs_deja_joues

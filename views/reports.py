@@ -30,17 +30,16 @@ class Affichage:
         print("\n Liste des tournois : ")
         donnees_tournois = []
         for tournoi in liste_tournois:
+            if tournoi.tour_actuel == tournoi.nombre_de_tours:
+                statut = "Terminé"
+            else:
+                statut = "En cours"
             donnees_tournois.append(
                 [
                     tournoi.ID,
                     tournoi.nom,
                     tournoi.lieu,
-                    tournoi.date_debut,
-                    tournoi.date_fin,
-                    tournoi.nombre_de_tours,
-                    len(tournoi.joueurs),
-                    tournoi.tour_actuel,
-                    tournoi.description,
+                    statut,
                 ]
             )
         tableau = tabulate(
@@ -49,12 +48,7 @@ class Affichage:
                 "ID",
                 "Nom",
                 "Lieu",
-                "Date de début",
-                "Date de fin",
-                "Nb tours",
-                "Nb joueurs inscrits",
-                "Tours actuel",
-                "Description",
+                "Statut",
             ],
             tablefmt="fancy_grid",
         )
