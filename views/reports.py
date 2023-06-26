@@ -59,10 +59,16 @@ class Affichage:
         """Fonction qui affiche les informations d'un tournoi donné : date de début et nom"""
         print("\n Nom et date du tournoi demandé : ")
         tournoi = []
-        infos = [infos_tournois[0]["Nom"], infos_tournois[0]["Date de début"]]
+        infos = [
+            infos_tournois[0]["Nom"],
+            infos_tournois[0]["Date de début"],
+            infos_tournois[0]["Date de fin"],
+        ]
         tournoi.append(infos)
         tableau = tabulate(
-            tournoi, headers=["Nom", "Date de début"], tablefmt="fancy_grid"
+            tournoi,
+            headers=["Nom", "Date de début", "Date de fin"],
+            tablefmt="fancy_grid",
         )
         print(tableau)
 
