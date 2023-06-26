@@ -94,7 +94,7 @@ class Menu:
         """Affiche le menu des tournois et les options disponibles"""
         MenuView.afficher_menu_tournoi()
         choix = input("Saisissez votre choix : ")
-        if choix == "1":
+        if choix == "0":
             id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
             if not self.check_id_tournoi(id_tournoi):
                 self.menu_tournoi()
@@ -107,6 +107,29 @@ class Menu:
             print(
                 f"Les joueurs {liste_joueurs_selectionnes} ont été ajoutés au tournoi"
             )
+            self.menu_tournoi()
+
+        elif choix == "1":
+            id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
+            if not self.check_id_tournoi(id_tournoi):
+                self.menu_tournoi()
+            players = []
+            controller = ControllerJoueur()
+            players_available = controller.charger_joueurs()
+            controller.afficher_liste_joueurs()
+            ajout = True
+            while ajout:
+                joueur_a_ajouter = input("Saisissez l'ID du joueur à ajouter : ")
+                for player in players_available:
+                    if player.id_national == joueur_a_ajouter:
+                        players.append(player.nom + " " + player.prenom)
+                choix = input("Voulez-vous ajouter un autre joueur ? (O/N) : ")
+                if choix == "O":
+                    ajout = True
+                else:
+                    ajout = False
+            ControllerTournoi().sauvegarde_joueurs(id_tournoi, players)
+            print("Joueurs ajoutés au tournoi")
             self.menu_tournoi()
 
         elif choix == "2":

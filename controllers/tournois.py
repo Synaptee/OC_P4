@@ -81,6 +81,14 @@ class ControllerTournoi:
         else:
             return True
 
+    def sauvegarde_joueurs(self, id_tournoi: str = "", joueurs: list = []):
+        item = self.db.get(Query().ID == id_tournoi)
+        joueurs_inscrits = item["Joueurs"]
+
+        for joueur in joueurs:
+            joueurs_inscrits.append(joueur)
+        self.db.update({"Joueurs": joueurs_inscrits}, doc_ids=[item.doc_id])
+
     def generate_random_matches(self, id_tournoi: str = ""):
         """Génére des matchs aléatoires pour le premier round d'un tournoi donné"""
         tournoi_en_cours = ControllerTournoi.search_tournoi(id_tournoi)

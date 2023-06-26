@@ -13,7 +13,7 @@ class ControllerJoueur:
         self.liste_joueurs = []
         self.db = TinyDB(db_path)
 
-    def charger_joueurs(self):
+    def charger_joueurs(self) -> list:
         """Charge les joueurs depuis la base de données et les stocke dans une liste"""
         joueurs = self.db.table("_default").all()
         joueurs_tries = sorted(joueurs, key=lambda joueur: joueur["Nom"])
@@ -26,6 +26,7 @@ class ControllerJoueur:
                     joueur["ID"],
                 )
             )
+        return self.liste_joueurs
 
     def afficher_liste_joueurs(self):
         """Affiche la liste des joueurs stockés dans la liste"""
