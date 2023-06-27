@@ -72,6 +72,15 @@ Lancez le programme en utilisant la commande `python main.py`.
 
 ## Exemples de gestion d'un tournoi
 + **Sélectionner des joueurs à ajouter**
+    Le programme vous affichera une liste des joueurs et de leurs identifiants. 
+
+    Saisissez l'identifiant du joueur à ajouter. 
+
+    ![Alt text](captures/tournoi_ajout_joueur.png)
+
+    Vous pourrez ajouter plusieurs joueurs à la suite. 
+    * Tapez **O** pour indiquer que vous souhaitez ajouter un autre joueur et saisissez son identifiant. 
+    * tapez **N** pour indiquer que vous avez terminé, et les joueurs sélectionnés seront ajoutés à la liste des joueurs du tournoi. 
 
 + **Lancer le prochain round**
 
