@@ -71,6 +71,9 @@ Lancez le programme en utilisant la commande `python main.py`.
 ![Alt text](captures/rapport_rounds_tournoi.png)
 
 ## Exemples de gestion d'un tournoi
++ **Reprendre un tournoi**
+    Le programme vous affichera une liste des tournois en cours et de leurs identifiants.
+
 + **Sélectionner des joueurs à ajouter**
     Le programme vous affichera une liste des joueurs et de leurs identifiants. 
 
