@@ -131,4 +131,6 @@ dmypy.json
 # Exclusion JB
 test.py
 .test.py
+.idea/
+.vscode/
 ```
