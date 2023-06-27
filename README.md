@@ -100,9 +100,3 @@ Lancez le programme en utilisant la commande `python main.py`.
     * Saisir **2** si le joueur **(2)** a gagné
     * Saisir **0** si c'est un **match nul**
     ![Alt text](captures/tournoi_resultats.png)
-
-
-
-
-
-
