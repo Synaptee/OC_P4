@@ -95,18 +95,10 @@ class Menu:
         MenuView.afficher_menu_tournoi()
         choix = input("Saisissez votre choix : ")
         if choix == "0":
-            id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
-            if not self.check_id_tournoi(id_tournoi):
-                self.menu_tournoi()
-            nb_joueurs = int(input("Saisissez le nombre de joueurs à sélectionner : "))
-            display = ControllerJoueur()
-            liste_joueurs_selectionnes = display.selectionner_joueurs(nb_joueurs)
-            Tournoi.ajouter_liste_joueurs_au_tournoi(
-                liste_joueurs_selectionnes, id_tournoi
-            )
-            print(
-                f"Les joueurs {liste_joueurs_selectionnes} ont été ajoutés au tournoi"
-            )
+            print("Liste des tournois en cours: ")
+            display = ControllerTournoi()
+            display.charger_tournois()
+            display.filtrer_tournois_en_cours()
             self.menu_tournoi()
 
         elif choix == "1":
@@ -186,6 +178,20 @@ class Menu:
             self.menu_principal()
         elif choix == "5":
             print("Fin du programme")
+        elif choix == "6":
+            id_tournoi = input("Saisissez l'ID du tournoi sélectionné' : ")
+            if not self.check_id_tournoi(id_tournoi):
+                self.menu_tournoi()
+            nb_joueurs = int(input("Saisissez le nombre de joueurs à sélectionner : "))
+            display = ControllerJoueur()
+            liste_joueurs_selectionnes = display.selectionner_joueurs(nb_joueurs)
+            Tournoi.ajouter_liste_joueurs_au_tournoi(
+                liste_joueurs_selectionnes, id_tournoi
+            )
+            print(
+                f"Les joueurs {liste_joueurs_selectionnes} ont été ajoutés au tournoi"
+            )
+            self.menu_tournoi()
 
         else:
             print("Option non disponible")

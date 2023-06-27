@@ -30,6 +30,7 @@ class MenuView:
     @staticmethod
     def afficher_menu_tournoi():
         print("\n * Tournoi * \n")
+        print("[0] Reprendre un tournoi")
         print("[1] Sélectionner des joueurs dans la liste")
         print("[2] Lancer le prochain round")
         print("[3] Saisir les résultats du round")

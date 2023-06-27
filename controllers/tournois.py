@@ -39,6 +39,15 @@ class ControllerTournoi:
         affichage = Affichage()
         affichage.afficher_liste_tournois(self.liste_tournois)
 
+    def filtrer_tournois_en_cours(self):
+        """Filtrer et afficher les tournois en cours"""
+        tournois_en_cours = []
+        for tournoi in self.liste_tournois:
+            if tournoi.tour_actuel != tournoi.nombre_de_tours:
+                tournois_en_cours.append(tournoi)
+        affichage = Affichage()
+        affichage.afficher_liste_tournois(tournois_en_cours)
+
     @staticmethod
     def search_tournoi(id_tournoi):
         """Rechercher un tournoi dans la base de données par son ID"""
