@@ -159,7 +159,6 @@ class ControllerTournoi:
                     points += match[1][1]
             joueurs_points[joueur] = points
 
-        print(joueurs_points)
 
         joueurs_tries = sorted(joueurs, key=lambda x: joueurs_points[x], reverse=True)
 
@@ -175,7 +174,6 @@ class ControllerTournoi:
             matchs_futurs.append([[joueur1, 0], [joueur2, 0]])
             joueurs_tries.remove(joueur1)
             joueurs_tries.remove(joueur2)
-            print(f"{joueur1} vs {joueur2}")
         return matchs_futurs
 
     def get_match_joues(self, id_tournoi):
